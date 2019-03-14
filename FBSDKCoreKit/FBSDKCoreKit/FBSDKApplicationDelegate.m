@@ -349,20 +349,6 @@ static NSString *const FBSDKAppLinkInboundEvent = @"fb_al_inbound";
   }
 }
 
-- (void)addObserver:(id<FBSDKApplicationObserving>)observer
-{
-  if (![_applicationObservers containsObject:observer]) {
-    [_applicationObservers addObject:observer];
-  }
-}
-
-- (void)removeObserver:(id<FBSDKApplicationObserving>)observer
-{
-  if ([_applicationObservers containsObject:observer]) {
-    [_applicationObservers removeObject:observer];
-  }
-}
-
 - (void)_openURLWithAuthenticationSession:(NSURL *)url
 {
   // Auto log basic events in case autoLogAppEventsEnabled is set
@@ -379,6 +365,24 @@ static NSString *const FBSDKAppLinkInboundEvent = @"fb_al_inbound";
 }
 
 #pragma mark - Internal Methods
+
+#pragma mark - FBSDKApplicationObserving
+
+- (void)addObserver:(id<FBSDKApplicationObserving>)observer
+{
+  if (![_applicationObservers containsObject:observer]) {
+    [_applicationObservers addObject:observer];
+  }
+}
+
+- (void)removeObserver:(id<FBSDKApplicationObserving>)observer
+{
+  if ([_applicationObservers containsObject:observer]) {
+    [_applicationObservers removeObject:observer];
+  }
+}
+
+#endif
 
 #pragma mark - FBSDKApplicationObserving
 
